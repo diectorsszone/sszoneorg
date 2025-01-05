@@ -57,7 +57,47 @@ app.post('/submit-form', async (req, res) => {
 
 // Route to thank user after form submission
 app.get('/thank-you', (req, res) => {
-  res.send('Thank you for submitting the form!');
+  res.send(`
+    <html>
+      <head>
+        <title>Thank You</title>
+        <style>
+          body {
+            text-align: center;
+            margin-top: 20%;
+            font-family: Arial, sans-serif;
+          }
+          h3 {
+            color: #333;
+          }
+          button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: green; /* Button ka color green */
+            color: white; /* Text ka color white */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          button:hover {
+            background-color: #005700; /* Hover karne par dark green */
+          }
+        </style>
+      </head>
+      <body style="text-align: center; margin-top: 20%;">
+        <h1>हम से संपर्क करने के लिए आपका धन्यबाद ! <br> हम जल्द ही आप से संपर्क करेंगे ☺️☺️☺️</h1>
+        <button onclick="redirectToHome()" style="padding: 10px 20px; font-size: 50px;" >
+          OK
+        </button>
+
+        <script>
+          function redirectToHome() {
+            window.location.href = "https://www.groupofsszone.org";
+          }
+        </script>
+      </body>
+    </html>
+  `);
 });
 
 app.listen(PORT, () => {
