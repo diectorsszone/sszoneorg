@@ -28,7 +28,9 @@ const formDataSchema = new mongoose.Schema({
   email: String,
   address: String,
   number: Number,
-  time: { type: Date, default: Date.now }
+  time: { type: Date, default: Date.now },
+  message: String,
+  subject: String,
 });
 
 // Create a model
@@ -38,7 +40,7 @@ const FormData = mongoose.model('FormData', formDataSchema);
 
 // POST route to save form data
 app.post('/submit-form', async (req, res) => {
-  const { name, email, address, number, time } = req.body;
+  const { name, email, address, number, time, message, subject } = req.body;
 
   try {
     const newFormData = new FormData({
@@ -47,6 +49,8 @@ app.post('/submit-form', async (req, res) => {
       address,
       number,
       time,
+      message,
+      subject,
     });
     await newFormData.save();
     res.redirect('/thank-you'); // Redirect after successful form submission
